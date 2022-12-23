@@ -1,0 +1,100 @@
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap; // allow us to do the line break for collapsing content
+    align-items: center;
+    justify-content: space-between; // space out brand from logo
+    padding: .5rem 0;    
+  
+    // Because flex properties aren't inherited, we need to redeclare these first
+    // few properties so that content nested within behave properly.
+    // The `flex-wrap` property is inherited to simplify the expanded navbars
+    %container-flex-properties {
+      display: flex;
+      flex-wrap: inherit;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    > .container,
+    > .container-fluid {
+      @extend %container-flex-properties;
+    }
+  
+    @each $breakpoint, $container-max-width in $container-max-widths {
+      > .container#{breakpoint-infix($breakpoint, $container-max-widths)} {
+        @extend %container-flex-properties;
+      }
+    }
+}
+  
+.navbar-nav {
+    display: flex;
+    flex-direction: column; // cannot use `inherit` to get the `.navbar`s value
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  
+    .show > .nav-link,
+    .nav-link.active {
+      color: var(--#{$prefix}navbar-active-color);
+    }
+}
+  
+// Responsive navbar
+//
+// Custom styles for responsive collapsing and toggling of navbar contents.
+// Powered by the collapse Bootstrap JavaScript plugin.
+  
+// When collapsed, prevent the toggleable navbar contents from appearing in
+// the default flexbox row orientation. Requires the use of `flex-wrap: wrap`
+// on the `.navbar` parent.
+.navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    // For always expanded or extra full navbars, ensure content aligns itself
+    // properly vertically. Can be easily overridden with flex utilities.
+    align-items: center;
+}
+  
+// scss-docs-start navbar-expand-loop
+// Generate series of `.navbar-expand-*` responsive classes for configuring
+// where your navbar collapses.
+.navbar-expand {
+    @each $breakpoint in map-keys($grid-breakpoints) {
+      $next: breakpoint-next($breakpoint, $grid-breakpoints);
+      $infix: breakpoint-infix($next, $grid-breakpoints);
+  
+      // stylelint-disable-next-line scss/selector-no-union-class-name
+      &#{$infix} {
+        @include media-breakpoint-up($next) {
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+  
+          .navbar-nav {
+            flex-direction: row;
+  
+            .nav-link {
+              padding-right: .5rem;
+              padding-left: .5rem;
+            }
+          }
+  
+          .navbar-collapse {
+            display: flex !important; // stylelint-disable-line declaration-no-important
+            flex-basis: auto;
+          }
+  
+          .navbar-toggler {
+            display: none;
+          }
+        }
+      }
+    }
+}
+
+  
+
+  
+
+  
