@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +19,7 @@
 </head>
 <body class="overflow-hidden" tabindex="0">
     <div id="content" class="overflow-hidden opacity-0">
-        <nav id="navbar" class="navbar navbar-expand-lg bg-light fixed-top">
+        <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
             <div class="container">
               <a class="navbar-brand" href="#">Logo</a>
               <button id="navbar-toggler" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,29 +40,98 @@
               </div>
             </div>
         </nav>
-        <div id="header" class="section">
-          <div class="container">
-            <h1>Landing Template</h1>
-            <img src="img/header.jpg" class="img" alt="img">
-          </div>            
-        </div>
-        <div id="section1" class="section">
+        <header id="header" class="header" style="background-image: url(img/webp/header.webp)">
+          <div class="header-bg-layer"></div>
+          <div class="header-content-layer">
             <div class="container">
-                <h2>Section 1</h2>
-                <img src="img/header.jpg" class="img" alt="img">
+              <div class="header-content">
+                <h1>Жилой комплекс в историческом центре</h1>
+                <div class="header-mouse animate_downUp">
+                  <span class="icon-mouse"></span>
+                </div>
+                <div class="header-nav">
+                  <ul class="nav d-md-flex justify-content-md-between">
+                    <li class="nav-item">
+                      <a href="tel:+78121234567" class="nav-link">
+                        <span class="icon-phone-call nav-icon"></span>
+                        <span>8 (812) 123-45-67</span>
+                      </a>
+                    </li>
+                    <li class="nav-item order-md-first">
+                      <a href="#" class="nav-link">
+                        <span class="icon-placeholder nav-icon"></span>
+                        <span>Наб. реки Фонтанки 10-15</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-        </div>
-        <div id="section2" class="section">
-            <div class="container">
-                <h2>Section 2</h2>
-                <img src="img/header.jpg" class="img" alt="img">
-            </div>
-        </div>  
-        <footer class="footer bg-light">
-          <div class="container">
-            <h2>Footer</h2>
           </div>
-        </footer>
+        </header>
+        <div class="cards">
+          <div class="container">
+            <div class="card">
+              <div class="card-img">
+                <span class="icon-bench card-icon"></span>
+              </div>
+              <p class="card-text">Рядом исторические парки и скверы</p>
+            </div>
+            <div class="card">
+              <div class="card-img">
+                <span class="icon-building card-icon"></span>
+              </div>
+              <p class="card-text">Полностью обустроенный</p>
+            </div>
+            <div class="card">
+              <div class="card-img">
+                <span class="icon-fountain card-icon"></span>
+              </div>
+              <p class="card-text">10 фонтанов на территории</p>
+            </div>
+            <div class="card">
+              <div class="card-img">
+                <span class="icon-bicycle card-icon"></span>
+              </div>
+              <p class="card-text">6 км <br> велодорожек</p>
+            </div>  
+          </div>        
+        </div>
+        <section class="photo-section">
+          <div class="container">
+            <h2>Наши квартиры</h2>
+            <div class="row photos">
+              <div class="col-12 col-md-6">
+                <div class="photo">
+                  <div class="photo-img">
+                    <img src="img/webp/photo1.webp" class="img" alt="photo">
+                  </div>                                    
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="photo">
+                  <div class="photo-img">
+                    <img src="img/webp/photo2.webp" class="img" alt="photo">
+                  </div>                                    
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="photo">
+                  <div class="photo-img">
+                    <img src="img/webp/photo1.webp" class="img" alt="photo">
+                  </div>                                    
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="photo">
+                  <div class="photo-img">
+                    <img src="img/webp/photo2.webp" class="img" alt="photo">
+                  </div>                                    
+                </div>
+              </div>
+            </div>
+          </div>          
+        </section>
     </div>
 </body>
 </html>

@@ -1,16 +1,124 @@
+@import "fonts";
+@import "icons";
+@import "animations";
+@import "components/nav";
 @import "components/navbar";
+@import "components/cards";
+
+body {
+    background-color: $dark;
+    color: $white;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.75rem;   
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.625rem;
+}
 
 .img {
     width: 100%;
     height: auto;
 }
 
-.section {
-    padding-top: 2.5rem;
+.icon-mouse {  
+    font-size: 2.5rem;
+    color: $accent; 
+    cursor: pointer;    
 }
 
-.footer {
-    padding-top: 2.5rem;
-    min-height: 500px;
+.header {
+    position: relative;
+    min-height: 435px;
+    padding: 174px 0 22.5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .header-bg-layer {
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(180deg, #242B33 11.98%, rgba(45, 52, 60, 0.38) 51.04%, #242B33 92.19%), linear-gradient(0deg, rgba(36, 43, 51, 0.78), rgba(36, 43, 51, 0.78));
+    }
+
+    .header-content-layer {
+        z-index: 2;
+        position: relative;
+    }
+
+    .header-content {
+        margin: 0 auto;
+        max-width: 24rem;
+    }
+
+    .header-mouse {
+        margin-top: 6.25rem;
+        text-align: center;
+        display: none;
+    }
+
+    .header-nav {
+        margin-top: 5.09375rem;
+    }
 }
+
+.photos {
+    margin-top: 30px;
+}
+
+.photo {
+    margin-bottom: 15px;
+    padding: 0 5%;    
+}
+
+@include media-breakpoint-up(md) {
+    h1 {        
+        font-size: 3rem;   
+    }
+
+    h2 {
+        text-align: start;
+        font-size: 2.25rem;
+    }
+
+    .header {
+        min-height: 840px;
+        padding: 296px 0 66.5px;
+
+        .header-bg-layer {
+            background: linear-gradient(180deg, #242B33 11.98%, rgba(45, 52, 60, 0.38) 51.04%, #242B33 92.19%);
+        }
+
+        .header-content {
+            min-width: 34.75rem;
+        }
+
+        .header-mouse {
+            display: block;
+        }
+
+        .header-nav {
+            margin-top: 12.5rem;
+        }
+    }
+
+    .photos {
+        margin-top: 100px;
+    }
+
+    .photo {
+        margin-bottom: 30px;
+        padding: 0;
+    }
+}
+
+
 

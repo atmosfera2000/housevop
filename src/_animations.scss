@@ -1,0 +1,13 @@
+.animate_downUp {
+    animation: downUp 0.9s cubic-bezier(0.1,0.25,0.1,1) 0s infinite alternate both;
+}
+
+@keyframes downUp {
+    from {
+        transform: translateY(-0.625rem);
+    }
+
+    to {
+        transform: translateY(.3125rem);
+    }
+}
