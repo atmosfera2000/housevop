@@ -70,23 +70,55 @@ h2 {
     }
 }
 
-.photos {
-    margin-top: 30px;
+.photo-section {
+    padding-top: 40px;
+    padding-bottom: 19px;
+
+    .photos {
+        margin-top: 30px;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
+    .photo-link {
+        z-index: 1;
+        display: block;
+        position: relative;
+        margin-bottom: 15px;
+        color: $white;
+        text-decoration: none;
+        font-family: 'Raleway', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1.125rem;
+
+        &:hover {
+            color: $white;
+        }
+
+        .photo-bg-layer {  
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(180deg, rgba(36, 43, 51, 0) 0%, #242B33 100%);
+        }
+
+        .photo-text {
+            z-index: 3;
+            position: absolute;
+            left: 30px;
+            bottom: 26px;
+        }
+    }
 }
 
-.photo {
-    margin-bottom: 15px;
-    padding: 0 5%;    
-}
 
 @include media-breakpoint-up(md) {
     h1 {        
         font-size: 3rem;   
-    }
-
-    h2 {
-        text-align: start;
-        font-size: 2.25rem;
     }
 
     .header {
@@ -110,15 +142,37 @@ h2 {
         }
     }
 
-    .photos {
-        margin-top: 100px;
-    }
+    .photo-section {   
+        .photos {
+            padding: 0;
+        } 
 
-    .photo {
-        margin-bottom: 30px;
-        padding: 0;
+        .photo {
+            margin-bottom: 30px;            
+        }
     }
 }
 
+@include media-breakpoint-up(lg) {
+    h2 {
+        text-align: start;
+        font-size: 2.25rem;
+    }
+
+    .photo-section {  
+        padding-top: 60px;
+        padding-bottom: 80px;
+
+        .photos {
+            margin-top: 100px;
+        }
+
+        .photo-text {
+            font-size: 1.5rem;
+            left: 50px;
+            bottom: 50px;
+        }        
+    }
+}
 
 
