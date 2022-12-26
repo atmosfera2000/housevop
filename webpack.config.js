@@ -25,10 +25,12 @@ module.exports = {
                     to: path.resolve(__dirname, "dist") 
                 },
             ],
-        }),
+        }),        
     ],
     devServer: {
-        static: './dist',          
+        static: path.resolve(__dirname, 'dist'),
+        port: 8080,
+        hot: true         
     },
     module: {
         rules: [
@@ -40,7 +42,7 @@ module.exports = {
                 test: /\.s[ac]ss$/i,
                 use: [
                     {
-                        loader: 'style-loader'
+                        loader: 'style-loader'                        
                     },
                     {
                         loader: 'css-loader',

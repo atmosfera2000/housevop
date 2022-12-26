@@ -115,6 +115,54 @@ h2 {
     }
 }
 
+.form-section {
+    padding: 70px 0;
+}
+
+.video-section {
+    padding: 75px 0 80px;
+
+    .video {
+        z-index: 1;
+        position: relative;
+
+        .video-bg-layer {
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(0deg, rgba(36, 43, 51, 0.8), rgba(36, 43, 51, 0.8));
+        }
+
+        .icon-box {
+            z-index: 3;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-icon {
+            font-size: 50px;
+            color: $accent;
+            cursor: pointer;
+        }
+    }
+}
+
+.map-section {
+    padding: 30px 0 40px;
+
+    .map {
+        padding-top: 52px;
+    }
+}
 
 @include media-breakpoint-up(md) {
     h1 {        
@@ -172,6 +220,28 @@ h2 {
             left: 50px;
             bottom: 50px;
         }        
+    }
+
+    .form-section {
+        padding: 100px 0;
+    }
+
+    .video-section {
+        padding: 80px 0 80px;
+
+        .video {
+            .video-icon {
+                font-size: 100px;
+            }
+        }
+    }
+
+    .map-section {
+        padding: 100px 0 100px;
+    
+        .map {
+            padding-top: 100px;
+        }
     }
 }
 
