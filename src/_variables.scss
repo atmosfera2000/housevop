@@ -18,3 +18,11 @@ $headings-font-family:        'Playfair Display', serif;
 $headings-font-weight:        bold;
 $headings-line-height:        1.3;
 $headings-color:              $accent;
+
+//transition
+$transition-collapse:         height .35s ease;
+$transition-collapse-width:   width .35s ease;
+//$transition-navbar:           padding .25s ease;
+$transition-navbar-toggler:   all .35s ease;
+//$transition-logo:             all .25s ease;
+$transition-navbar-shadow:    box-shadow .35s ease

@@ -4,8 +4,9 @@
     flex-wrap: wrap; // allow us to do the line break for collapsing content
     align-items: center;
     justify-content: space-between; // space out brand from logo
-    padding: .5rem 0; 
+    padding: 1.875rem 0; 
     background-color: $dark;   
+    transition: $transition-navbar-shadow;
   
     // Because flex properties aren't inherited, we need to redeclare these first
     // few properties so that content nested within behave properly.
@@ -27,6 +28,10 @@
         @extend %container-flex-properties;
       }
     }
+}
+
+.navbar_shadow {
+  box-shadow: 0px 14px 14px rgba(0, 0, 0, 0.36); 
 }
   
 .navbar-nav {

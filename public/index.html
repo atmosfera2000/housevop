@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="favicon.ico">
-    
+    <link rel="icon" href="favicon.ico">    
     <style>
+        .no-transition * {
+          transition: none !important;
+        }
         .opacity-0 {
             opacity: 0;
         }
@@ -16,14 +18,16 @@
     </style>
     <title>Document</title>
 </head>
-<body class="overflow-hidden" tabindex="0">
+<body class="overflow-hidden no-transition" tabindex="0">
     <div id="content" class="opacity-0">
         <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
             <div class="container">
-              <a class="navbar-brand" href="#">Logo</a>
-              <button id="navbar-toggler" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-              </button>
+              <a class="navbar-brand" href="#">
+                <img src="img/logo.svg" class="logo" alt="Logo">
+              </a>
+              <div class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="button" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+              </div>
               <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                   <li class="nav-item">
@@ -143,8 +147,7 @@
               </div>
             </div>
           </div>          
-        </section>
-        
+        </section>        
         <section class="form-section">
           <div class="container">
             <h2>Хотите посмотреть?</h2>            
@@ -157,10 +160,10 @@
               <div class="col-12 col-lg-6">
                 <div class="row">
                   <div class="col-12 col-md-6">
-                    
+                    <input type="text">
                   </div>
                   <div class="col-12 col-md-6">
-                    
+                    <input type="text">
                   </div>
                   <div class="col-12 col-md-6">
                     <p class="form-text form-text_small">
@@ -168,14 +171,13 @@
                     </p>
                   </div>
                   <div class="col-12 col-md-6">                    
-
+                    <button type="submit">Submit</button>
                   </div>
                 </div>
               </div>
             </form>
           </div>
-        </section>
-      
+        </section>      
         <div class="video-section">
           <div class="container">
             <div class="row justify-content-center">
@@ -190,22 +192,128 @@
               </div>
             </div>
           </div>
-        </div>
-        
+        </div>        
         <section class="map-section">
           <div class="container">
             <h2>Район на карте</h2>
             <div class="row justify-content-center">
               <div class="col-10 col-lg-12">
                 <div class="map">                  
-                  <iframe id="yandexMap" src="" style="width: 100%; border: none;" height="358"></iframe>
+                  <iframe id="yandexMap" src="https://yandex.ru/map-widget/v1/?um=constructor%3A82d7a4f3f9ef8fb43c45373fb4e83e7b446bb1b38079564af9ec76ed97338126&amp;source=constructor" style="width: 100%; border: none;" height="358"></iframe>
                 </div>
               </div>
             </div>
           </div>          
         </section>
-      
-        
+        <section class="form-bottom-section">
+          <div class="container">
+            <h2>Есть вопросы?</h2>
+            <form class="row">
+              <div class="col-12 col-md-4 col-lg-3">
+                <input type="text">
+              </div>
+              <div class="col-12 col-md-4 col-lg-3">
+                <input type="text">
+              </div>
+              <div class="col-12 col-md-4 col-lg-3">
+                <button type="submit">Submit</button>
+              </div>
+              <div class="col-12 col-md-12 col-lg-3 order-lg-first">
+                <p>*Мы никому не передаем ваши данные. И не сохраняем ваш номер в базу.</p>
+              </div>
+            </form>
+          </div>
+        </section>  
+        <footer class="footer">
+          <div class="footer-bg-layer"></div>
+          <div class="footer-top-layer">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-lg-3">
+                  <a href="#">
+                    <img src="img/logo.svg" style="width:8.375rem" alt="logo">
+                  </a>
+                </div>
+                <div class="col-12 col-lg-3">
+                  <ul class="nav text-md-start">
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">О комплексе</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">Район</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">Каталог квартир</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">Ипотека</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">Контакты</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-12 col-lg-3">
+                  <ul class="nav text-md-start">
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">О комплексе</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">Район</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">Каталог квартир</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">Ипотека</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">Контакты</a>
+                    </li>
+                  </ul>      
+                </div>
+                <div class="col-12 col-lg-3">
+                  <ul class="nav text-md-start">
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">Адрес: Наб. реки Фонтанки 10-15</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">Телефон: 8 (812) 123-45-67</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">Отдел продаж: 10:00 - 20:00</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">E-mail: vip@housevip.ru</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link link_social">
+                        <svg style="width:1.8125rem;height:1.25rem">
+                          <use xlink:href="img/social-sprite.svg/#youtube"></use>
+                        </svg>
+                      </a>
+                      <a href="#" class="nav-link link_social">
+                        <svg style="width:2.25rem;height:1.25rem">
+                          <use xlink:href="img/social-sprite.svg/#vk"></use>
+                        </svg>
+                      </a>
+                      <a href="#" class="nav-link link_social">
+                        <svg style="width:1.25rem;height:1.25rem">
+                          <use xlink:href="img/social-sprite.svg/#fb"></use>
+                        </svg>
+                      </a>
+                      <a href="#" class="nav-link link_social">
+                        <svg style="width:1.25rem;height:1.25rem">
+                          <use xlink:href="img/social-sprite.svg/#instagram"></use>
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>      
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>      
     </div>
 </body>
 </html>
