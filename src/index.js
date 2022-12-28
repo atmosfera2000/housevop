@@ -1,6 +1,10 @@
 import './style.scss'
 import { Collapse, ScrollSpy } from 'bootstrap';
 
+let navbarCollapseState = {
+    show: false
+}
+
 window.addEventListener('load', init);
 
 navbarShrink(); 
@@ -29,18 +33,22 @@ function init () {
         document.querySelector('.navbar-toggler').classList.toggle('navbar-toggler_active')    
         document.getElementById('navbar').classList.add('navbar_shadow')
         document.getElementById('navbar').classList.add('navbar_dark')
+
+        navbarCollapseState.show = true;
     })
 
     document.getElementById('navbarCollapse').addEventListener('hide.bs.collapse', event => {
         document.querySelector('.navbar-toggler').classList.toggle('navbar-toggler_active')    
-        document.getElementById('navbar').classList.remove('navbar_shadow')        
+        document.getElementById('navbar').classList.remove('navbar_shadow') 
+        
+        navbarCollapseState.show = false;
     })
 
     document.getElementById('navbarCollapse').addEventListener('hidden.bs.collapse', event => {
         document.getElementById('navbar').classList.remove('navbar_dark')
     })    
 
-    document.addEventListener('scroll', navbarShrink);        
+    document.addEventListener('scroll', navbarShrink);          
 }
 
 function navbarShrink() {
@@ -53,7 +61,14 @@ function navbarShrink() {
         document.getElementById('navbar').classList.remove('navbar_dark')
         document.getElementById('navbar').classList.remove('navbar_shrink')
     }   
+
+    if ((document.body.scrollTop === 0 || document.documentElement.scrollTop === 0) && navbarCollapseState.show) {
+        document.getElementById('navbar').classList.add('navbar_shadow')
+        document.getElementById('navbar').classList.add('navbar_dark')
+    } 
 }
+
+
 
 
 
