@@ -5,6 +5,7 @@
 @import "components/navbar";
 @import "components/navbar-toggler";
 @import "components/cards";
+@import "components/form";
 
 body {
     background-color: $dark;
@@ -19,6 +20,16 @@ h1 {
 h2 {
     text-align: center;
     font-size: 1.625rem;
+}
+
+.text {
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: .875rem;
+    line-height: 1.71;
+    margin-bottom: 2.5rem;
+    color: $white;
 }
 
 .logo {
@@ -249,6 +260,10 @@ h2 {
     h2 {
         text-align: start;
         font-size: 2.25rem;
+    }
+
+    .text {
+        font-size: 1rem;
     }
 
     .photo-section {  
