@@ -23,7 +23,8 @@ h2 {
 
 .logo {
     width: 6.25rem;
-    height: auto;
+    height: auto;  
+    transition: all .35s ease; 
 }
 
 .img {
@@ -72,7 +73,7 @@ h2 {
     }
 
     .header-nav {
-        margin-top: 5.09375rem;
+        margin-top: 6.2rem;
     }
 }
 
@@ -229,6 +230,10 @@ h2 {
         }
     }
 
+    .logo {
+        width: 8.375rem;
+    }
+
     .photo-section {   
         .photos {
             padding: 0;
@@ -244,10 +249,6 @@ h2 {
     h2 {
         text-align: start;
         font-size: 2.25rem;
-    }
-
-    .logo {
-        width: 8.375rem;
     }
 
     .photo-section {  

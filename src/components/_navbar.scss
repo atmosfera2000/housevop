@@ -1,12 +1,11 @@
-.navbar {
+.navbar {    
     position: relative;
     display: flex;
     flex-wrap: wrap; // allow us to do the line break for collapsing content
     align-items: center;
     justify-content: space-between; // space out brand from logo
-    padding: 1.875rem 0; 
-    background-color: $dark;   
-    transition: $transition-navbar-shadow;
+    padding: 1.875rem 0;    
+    transition: $transition-navbar;
   
     // Because flex properties aren't inherited, we need to redeclare these first
     // few properties so that content nested within behave properly.
@@ -30,16 +29,50 @@
     }
 }
 
+.navbar_shrink {
+  padding-top: .8rem;
+  padding-bottom: .8rem;
+
+  .logo {
+    width: 6.25rem;    
+  }
+}
+
 .navbar_shadow {
   box-shadow: 0px 14px 14px rgba(0, 0, 0, 0.36); 
 }
+
+.navbar_dark {
+  background-color: $dark;   
+}
   
 .navbar-nav {
+    margin-top: 1.875rem;
     display: flex;
     flex-direction: column; // cannot use `inherit` to get the `.navbar`s value
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
+    text-align: center;  
+    line-height: 1.15;  
+
+    .nav-item {
+      padding: .625rem 0;
+    }
+
+    .nav-link {
+      color: $white;
+      text-decoration: none;
+      font-family: 'Raleway', sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+
+      &:hover {
+        color: $accent;
+      }
+    }
   
     .show > .nav-link,
     .nav-link.active {
@@ -76,13 +109,19 @@
         @include media-breakpoint-up($next) {
           flex-wrap: nowrap;
           justify-content: flex-start;
-  
+
+ 
           .navbar-nav {
             flex-direction: row;
-  
+            margin-top: 0;
+            height: auto;
+        
             .nav-link {
-              padding-right: .5rem;
-              padding-left: .5rem;
+              font-size: .875rem;
+            }
+  
+            .nav-item {              
+              padding-left: 2.5rem;
             }
           }
   
@@ -98,6 +137,14 @@
       }
     }
 }
+
+@include media-breakpoint-up(md) {
+  .navbar-nav {
+    height: 80vh;
+  }
+}
+
+
 
   
 

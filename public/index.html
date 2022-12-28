@@ -16,6 +16,10 @@
           overflow: hidden;
         }
     </style>
+    <script>
+      //it makes scroll to be stable
+      let pos = window.scrollY;
+    </script>
     <title>Document</title>
 </head>
 <body class="overflow-hidden no-transition" tabindex="0">
@@ -34,7 +38,16 @@
                     <a class="nav-link" href="#header">О компании</a>
                   </li>
                   <li class="nav-item">
+                    <a class="nav-link" href="#cards">Район</a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link" href="#photos">Каталог квартир</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#video-section">Видео</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#map-section">Контакты</a>
                   </li>
                 </ul>
               </div>
@@ -178,7 +191,7 @@
             </form>
           </div>
         </section>      
-        <div class="video-section">
+        <div id="video-section" class="video-section">
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-10 col-md-8">
@@ -193,7 +206,7 @@
             </div>
           </div>
         </div>        
-        <section class="map-section">
+        <section id="map-section" class="map-section">
           <div class="container">
             <h2>Район на карте</h2>
             <div class="row justify-content-center">
