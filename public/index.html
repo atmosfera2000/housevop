@@ -10,7 +10,7 @@
           transition: none !important;
         }
         .opacity-0 {
-            opacity: 0;
+          opacity: 0;
         }
         .overflow-hidden {
           overflow: hidden;
@@ -18,333 +18,418 @@
         .overflow-x {
           overflow-x: hidden;
         }
+        .preload {
+          z-index: 9999;
+          position: fixed;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #242B33;              
+        }
+        .preload-ring {
+          position: absolute;
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          animation: ring 2s linear infinite;
+        }
+        .preload-ring::before {
+          position: absolute;
+          content: '';
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          border-radius: 50%;        
+        }
+        .preload-text {
+          color: #737373;
+          font-size: 20px;
+          letter-spacing: 2px;    
+          line-height: 1.3;    
+          font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+          animation: text 3s ease-in-out infinite;
+        }
+        @keyframes ring {
+          0% {
+            transform: rotate(0deg);
+            box-shadow: 1px 5px 2px #e65c00;
+          }
+          50% {
+            transform: rotate(180deg);
+            box-shadow: 1px 5px 2px #18b201;
+          }
+          100% {
+            transform: rotate(360deg);
+            box-shadow: 1px 5px 2px #0456c8;
+          }
+        }
+        @keyframes text {
+          50%{
+            opacity: 0;
+          }
+        }
     </style>
     <script>
-      //it makes scroll to be stable
-      let pos = window.scrollY;
+      //it makes scroll to be little stable
+      let pos = window.scrollY;      
+    </script>
+    <script>
+      //Cache loading checking
+      const resources = performance.getEntriesByType("navigation"); 
+      window.onload = () => {
+        //if loading is not from cache it shows the loader at least in 250 ms if speed is high
+        if (resources[0].transferSize > 0 && resources[0].encodedBodySize > 0 && resources[0].transferSize > resources[0].encodedBodySize ) {
+          setTimeout(removeLoader, 250); //show the loader at least in 250 ms
+        } else {
+          removeLoader();
+        }        
+      };
+      
+      function removeLoader() {
+        document.getElementById('preload').classList.add('d-none')        
+      }
     </script>
     <title>Document</title>
 </head>
 <body class="overflow-hidden no-transition" tabindex="0">
-    <div id="content" class="opacity-0 overflow-x">
-        <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
-            <div class="container">
-              <a class="navbar-brand" href="#">
-                <img src="img/logo.svg" class="logo" alt="Logo">
-              </a>
-              <div class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="button" aria-expanded="false">
-                <span class="navbar-toggler-icon"></span>
-              </div>
-              <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#header">О компании</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#cards">Район</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#photos">Каталог квартир</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#video-section">Видео</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#map-section">Контакты</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-        </nav>
-        <header id="header" class="header" style="background-image: url(img/webp/header.webp)">
-          <div class="header-bg-layer"></div>
-          <div class="header-content-layer">
-            <div class="container">
-              <div class="header-content">
-                <h1>Жилой комплекс в историческом центре</h1>
-                <div class="header-mouse animate_downUp">
-                  <span class="icon-mouse"></span>
-                </div>
-                <div class="header-nav">
-                  <ul class="nav d-md-flex justify-content-md-between">
-                    <li class="nav-item">
-                      <a href="tel:+78121234567" class="nav-link">
-                        <span class="icon-phone-call nav-icon"></span>
-                        <span>8 (812) 123-45-67</span>
-                      </a>
-                    </li>
-                    <li class="nav-item order-md-first">
-                      <a href="#" class="nav-link">
-                        <span class="icon-placeholder nav-icon"></span>
-                        <span>Наб. реки Фонтанки 10-15</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+  <div id="preload" class="preload">    
+    <div class="preload-ring" style="display: none;"></div>
+    <span class="preload-text" style="display: none;">Loading...</span> 
+  </div>
+  <script>
+      //setTimeout is needed to get a little time to load perfomance data by some browsers
+      setTimeout(() => {
+        //if loading is not from cache it shows the loader
+        if (resources[0].transferSize > 0 && resources[0].encodedBodySize > 0 && resources[0].transferSize > resources[0].encodedBodySize ) {
+          document.querySelector('.preload-ring').style="";
+          document.querySelector('.preload-text').style="";
+        } 
+      }, 0); 
+  </script>
+  <div id="content" class="opacity-0 overflow-x">
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <img src="img/logo.svg" class="logo" alt="Logo">
+          </a>
+          <div class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="button" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
           </div>
-        </header>
-        <div id="cards" class="cards">
-          <div class="container position-relative">
-            <div class="bg-number-layer bg-number_right">
-              <div class="bg-number-text">
-                <span>II</span>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-img">
-                <span class="icon-bench card-icon"></span>
-              </div>
-              <p class="card-text">Рядом исторические парки и скверы</p>
-            </div>
-            <div class="card">
-              <div class="card-img">
-                <span class="icon-building card-icon"></span>
-              </div>
-              <p class="card-text">Полностью обустроенный</p>
-            </div>
-            <div class="card">
-              <div class="card-img">
-                <span class="icon-fountain card-icon"></span>
-              </div>
-              <p class="card-text">10 фонтанов на территории</p>
-            </div>
-            <div class="card">
-              <div class="card-img">
-                <span class="icon-bicycle card-icon"></span>
-              </div>
-              <p class="card-text">6 км <br> велодорожек</p>
-            </div>          
-          </div>        
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#header">О компании</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#cards">Район</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#photos">Каталог квартир</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#video-section">Видео</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#map-section">Контакты</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <section id="photos" class="photo-section">
-          <div class="container position-relative">
-            <div class="bg-number-layer">
-              <div class="bg-number-text">
-                <span>III</span>
-              </div>
+    </nav>
+    <header id="header" class="header" style="background-image: url(img/webp/header.webp)">
+      <div class="header-bg-layer"></div>
+      <div class="header-content-layer">
+        <div class="container">
+          <div class="header-content">
+            <h1>Жилой комплекс в историческом центре</h1>
+            <div class="header-mouse animate_downUp">
+              <span class="icon-mouse"></span>
             </div>
-            <h2>Наши квартиры</h2>
-            <div class="row photos">
-              <div class="col-12 col-md-6">
-                <a href="#" class="photo-link">
-                  <div class="photo-img">
-                    <img src="img/webp/photo1.webp" class="img" alt="photo">
-                  </div>   
-                  <div class="photo-bg-layer"></div> 
-                  <div class="photo-text">
-                    <span>Лофт - 2 этажа</span>
-                  </div>                             
-                </a>
-              </div>
-              <div class="col-12 col-md-6">
-                <a href="#" class="photo-link">
-                  <div class="photo-img">
-                    <img src="img/webp/photo2.webp" class="img" alt="photo">
-                  </div>  
-                  <div class="photo-bg-layer"></div>   
-                  <div class="photo-text">
-                    <span>Лофт - 2 этажа</span>
-                  </div>                              
-                </a>
-              </div>
-              <div class="col-12 col-md-6">
-                <a href="#" class="photo-link">
-                  <div class="photo-img">
-                    <img src="img/webp/photo1.webp" class="img" alt="photo">
-                  </div>  
-                  <div class="photo-bg-layer"></div>   
-                  <div class="photo-text">
-                    <span>Лофт - 3 этажа</span>
-                  </div>                               
-                </a>
-              </div>
-              <div class="col-12 col-md-6">
-                <a href="#" class="photo-link">
-                  <div class="photo-img">
-                    <img src="img/webp/photo2.webp" class="img" alt="photo">
-                  </div> 
-                  <div class="photo-bg-layer"></div>  
-                  <div class="photo-text">
-                    <span>Лофт - 2 этажа</span>
-                  </div>                                 
-                </a>                
-              </div>
-            </div>
-          </div>          
-        </section>        
-        <section class="form-section">
-          <div class="container">
-            <h2>Хотите посмотреть?</h2>            
-            <form class="row justify-content-center">
-              <div class="col-10 col-lg-6">
-                <p class="text text-center text-lg-start">
-                  Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. 
-                </p>
-              </div>
-              <div class="col-10 col-lg-6">
-                <div class="row justify-content-center">
-                  <div class="col-10 col-md-6">
-                    <input type="text" class="form-control" placeholder="Ваше имя">
-                  </div>
-                  <div class="col-10 col-md-6">
-                    <input type="text" class="form-control" placeholder="Ваш телефон">
-                  </div>
-                  <div class="col-10 col-md-6 order-lg-last mt-2">                    
-                    <button type="submit" class="btn">Посмотрть район</button>
-                  </div>
-                  <div class="col-10 col-md-6 d-flex justify-content-center mt-3 mt-lg-2">
-                    <p class="form-text text-center">
-                      *Мы никому не передаем ваши данные. И не сохраняем ваш номер в базу.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </section>      
-        <div id="video-section" class="video-section">
-          <div class="container position-relative">
-            <div class="bg-number-layer bg-number_right">
-              <div class="bg-number-text">
-                <span>IV</span>
-              </div>
-            </div>
-            <div class="row justify-content-center">
-              <div class="col-10 col-md-8">
-                <div class="video">
-                  <img src="img/webp/video.webp" class="img" alt="video">
-                  <div class="video-bg-layer"></div>
-                  <div class="icon-box">
-                    <span class="icon-play video-icon"></span>
-                  </div>
-                </div>
-              </div>
+            <div class="header-nav">
+              <ul class="nav d-md-flex justify-content-md-between">
+                <li class="nav-item">
+                  <a href="tel:+78121234567" class="nav-link">
+                    <span class="icon-phone-call nav-icon"></span>
+                    <span>8 (812) 123-45-67</span>
+                  </a>
+                </li>
+                <li class="nav-item order-md-first">
+                  <a href="#" class="nav-link">
+                    <span class="icon-placeholder nav-icon"></span>
+                    <span>Наб. реки Фонтанки 10-15</span>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
-        </div>        
-        <section id="map-section" class="map-section">
-          <div class="container">
-            <h2>Район на карте</h2>
+        </div>
+      </div>
+    </header>
+    <div id="cards" class="cards">
+      <div class="container position-relative">
+        <div class="bg-number-layer bg-number_right">
+          <div class="bg-number-text">
+            <span>II</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <span class="icon-bench card-icon"></span>
+          </div>
+          <p class="card-text">Рядом исторические парки и скверы</p>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <span class="icon-building card-icon"></span>
+          </div>
+          <p class="card-text">Полностью обустроенный</p>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <span class="icon-fountain card-icon"></span>
+          </div>
+          <p class="card-text">10 фонтанов на территории</p>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <span class="icon-bicycle card-icon"></span>
+          </div>
+          <p class="card-text">6 км <br> велодорожек</p>
+        </div>          
+      </div>        
+    </div>
+    <section id="photos" class="photo-section">
+      <div class="container position-relative">
+        <div class="bg-number-layer">
+          <div class="bg-number-text">
+            <span>III</span>
+          </div>
+        </div>
+        <h2>Наши квартиры</h2>
+        <div class="row photos">
+          <div class="col-12 col-md-6">
+            <a href="#" class="photo-link">
+              <div class="photo-img">
+                <img src="img/webp/photo1.webp" class="img" alt="photo">
+              </div>   
+              <div class="photo-bg-layer"></div> 
+              <div class="photo-text">
+                <span>Лофт - 2 этажа</span>
+              </div>                             
+            </a>
+          </div>
+          <div class="col-12 col-md-6">
+            <a href="#" class="photo-link">
+              <div class="photo-img">
+                <img src="img/webp/photo2.webp" class="img" alt="photo">
+              </div>  
+              <div class="photo-bg-layer"></div>   
+              <div class="photo-text">
+                <span>Лофт - 2 этажа</span>
+              </div>                              
+            </a>
+          </div>
+          <div class="col-12 col-md-6">
+            <a href="#" class="photo-link">
+              <div class="photo-img">
+                <img src="img/webp/photo1.webp" class="img" alt="photo">
+              </div>  
+              <div class="photo-bg-layer"></div>   
+              <div class="photo-text">
+                <span>Лофт - 3 этажа</span>
+              </div>                               
+            </a>
+          </div>
+          <div class="col-12 col-md-6">
+            <a href="#" class="photo-link">
+              <div class="photo-img">
+                <img src="img/webp/photo2.webp" class="img" alt="photo">
+              </div> 
+              <div class="photo-bg-layer"></div>  
+              <div class="photo-text">
+                <span>Лофт - 2 этажа</span>
+              </div>                                 
+            </a>                
+          </div>
+        </div>
+      </div>          
+    </section>        
+    <section class="form-section">
+      <div class="container">
+        <h2>Хотите посмотреть?</h2>            
+        <form class="row justify-content-center">
+          <div class="col-10 col-lg-6">
+            <p class="text text-center text-lg-start">
+              Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. 
+            </p>
+          </div>
+          <div class="col-10 col-lg-6">
             <div class="row justify-content-center">
-              <div class="col-10 col-lg-12">
-                <div class="map">                  
-                  <iframe id="yandexMap" src="" style="width: 100%; border: none;" height="358"></iframe>
-                </div>
-              </div>
-            </div>
-          </div>          
-        </section>
-        <section class="form-bottom-section">
-          <div class="container">
-            <h2>Есть вопросы?</h2>
-            <form class="row justify-content-center">
-              <div class="col-10 col-md-4 col-lg-3">
+              <div class="col-10 col-md-6">
                 <input type="text" class="form-control" placeholder="Ваше имя">
               </div>
-              <div class="col-10 col-md-4 col-lg-3">
+              <div class="col-10 col-md-6">
                 <input type="text" class="form-control" placeholder="Ваш телефон">
               </div>
-              <div class="col-10 col-md-4 col-lg-3 mt-3 mt-md-0">
-                <button type="submit" class="btn">Посмотреть район</button>
+              <div class="col-10 col-md-6 order-lg-last mt-2">                    
+                <button type="submit" class="btn">Посмотрть район</button>
               </div>
-              <div class="col-10 col-md-12 col-lg-3 order-lg-first d-flex align-items-center justify-content-center mt-3 mt-md-0">
-                <p class="form-text text-center">*Мы никому не передаем ваши данные. И не сохраняем ваш номер в базу.</p>
-              </div>
-            </form>
-          </div>
-        </section>  
-        <footer class="footer">
-          <div class="footer-bg-layer"></div>
-          <div class="footer-top-layer">
-            <div class="container">
-              <div class="row">
-                <div class="col-12 col-lg-3 text-center text-lg-start mt-lg-2 footer-logo">
-                  <a href="#">
-                    <img src="img/logo.svg" style="width:8.375rem" alt="logo">
-                  </a>
-                </div>
-                <div class="col-12 col-md-4 col-lg-3">
-                  <ul class="nav nav_footer text-md-start">
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">О комплексе</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Район</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Каталог квартир</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Ипотека</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Контакты</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-12 col-md-4 col-lg-3">
-                  <ul class="nav nav_footer text-md-start">
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">О комплексе</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Район</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Каталог квартир</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Ипотека</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Контакты</a>
-                    </li>
-                  </ul>      
-                </div>
-                <div class="col-12 col-md-4 col-lg-3">
-                  <ul class="nav nav_footer text-md-start">
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Адрес: Наб. реки Фонтанки 10-15</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Телефон: 8 (812) 123-45-67</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Отдел продаж: 10:00 - 20:00</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">E-mail: vip@housevip.ru</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link link_social">
-                        <svg style="width:1.8125rem;height:1.25rem">
-                          <use xlink:href="img/social-sprite.svg/#youtube"></use>
-                        </svg>
-                      </a>
-                      <a href="#" class="nav-link link_social">
-                        <svg style="width:2.25rem;height:1.25rem">
-                          <use xlink:href="img/social-sprite.svg/#vk"></use>
-                        </svg>
-                      </a>
-                      <a href="#" class="nav-link link_social">
-                        <svg style="width:1.25rem;height:1.25rem">
-                          <use xlink:href="img/social-sprite.svg/#fb"></use>
-                        </svg>
-                      </a>
-                      <a href="#" class="nav-link link_social">
-                        <svg style="width:1.25rem;height:1.25rem">
-                          <use xlink:href="img/social-sprite.svg/#instagram"></use>
-                        </svg>
-                      </a>
-                    </li>
-                  </ul>      
-                </div>
+              <div class="col-10 col-md-6 d-flex justify-content-center mt-3 mt-lg-2">
+                <p class="form-text text-center">
+                  *Мы никому не передаем ваши данные. И не сохраняем ваш номер в базу.
+                </p>
               </div>
             </div>
           </div>
-        </footer>      
-    </div>
+        </form>
+      </div>
+    </section>      
+    <div id="video-section" class="video-section">
+      <div class="container position-relative">
+        <div class="bg-number-layer bg-number_right">
+          <div class="bg-number-text">
+            <span>IV</span>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-10 col-md-8">
+            <div class="video">
+              <img src="img/webp/video.webp" class="img" alt="video">
+              <div class="video-bg-layer"></div>
+              <div class="icon-box">
+                <span class="icon-play video-icon"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>        
+    <section id="map-section" class="map-section">
+      <div class="container">
+        <h2>Район на карте</h2>
+        <div class="row justify-content-center">
+          <div class="col-10 col-lg-12">
+            <div class="map">                  
+              <iframe id="yandexMap" src="" style="width: 100%; border: none;" height="358"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>          
+    </section>
+    <section class="form-bottom-section">
+      <div class="container">
+        <h2>Есть вопросы?</h2>
+        <form class="row justify-content-center">
+          <div class="col-10 col-md-4 col-lg-3">
+            <input type="text" class="form-control" placeholder="Ваше имя">
+          </div>
+          <div class="col-10 col-md-4 col-lg-3">
+            <input type="text" class="form-control" placeholder="Ваш телефон">
+          </div>
+          <div class="col-10 col-md-4 col-lg-3 mt-3 mt-md-0">
+            <button type="submit" class="btn">Посмотреть район</button>
+          </div>
+          <div class="col-10 col-md-12 col-lg-3 order-lg-first d-flex align-items-center justify-content-center mt-3 mt-md-0">
+            <p class="form-text text-center">*Мы никому не передаем ваши данные. И не сохраняем ваш номер в базу.</p>
+          </div>
+        </form>
+      </div>
+    </section>  
+    <footer class="footer">
+      <div class="footer-bg-layer"></div>
+      <div class="footer-top-layer">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-lg-3 text-center text-lg-start mt-lg-2 footer-logo">
+              <a href="#">
+                <img src="img/logo.svg" style="width:8.375rem" alt="logo">
+              </a>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3">
+              <ul class="nav nav_footer text-md-start">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">О комплексе</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Район</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Каталог квартир</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Ипотека</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Контакты</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3">
+              <ul class="nav nav_footer text-md-start">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">О комплексе</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Район</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Каталог квартир</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Ипотека</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Контакты</a>
+                </li>
+              </ul>      
+            </div>
+            <div class="col-12 col-md-4 col-lg-3">
+              <ul class="nav nav_footer text-md-start">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Адрес: Наб. реки Фонтанки 10-15</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Телефон: 8 (812) 123-45-67</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Отдел продаж: 10:00 - 20:00</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">E-mail: vip@housevip.ru</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link link_social">
+                    <svg style="width:1.8125rem;height:1.25rem">
+                      <use xlink:href="img/social-sprite.svg/#youtube"></use>
+                    </svg>
+                  </a>
+                  <a href="#" class="nav-link link_social">
+                    <svg style="width:2.25rem;height:1.25rem">
+                      <use xlink:href="img/social-sprite.svg/#vk"></use>
+                    </svg>
+                  </a>
+                  <a href="#" class="nav-link link_social">
+                    <svg style="width:1.25rem;height:1.25rem">
+                      <use xlink:href="img/social-sprite.svg/#fb"></use>
+                    </svg>
+                  </a>
+                  <a href="#" class="nav-link link_social">
+                    <svg style="width:1.25rem;height:1.25rem">
+                      <use xlink:href="img/social-sprite.svg/#instagram"></use>
+                    </svg>
+                  </a>
+                </li>
+              </ul>      
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>      
+  </div>
 </body>
 </html>

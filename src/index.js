@@ -5,7 +5,7 @@ let navbarCollapseState = {
     show: false
 }
 
-window.addEventListener('load', setTimeout(init, 100));
+window.addEventListener('load', () => setTimeout(init, 100));
 
 function init () {  
     navbarShrink() 
