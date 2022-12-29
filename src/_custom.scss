@@ -6,6 +6,7 @@
 @import "components/navbar-toggler";
 @import "components/cards";
 @import "components/form";
+@import "components/bg-number";
 
 body {
     background-color: $dark;
@@ -197,6 +198,10 @@ h2 {
 .footer {
     position: relative;
     padding: 40px 0 32.5px;
+
+    .footer-logo {
+        margin-bottom: 1.875rem;
+    }
 
     .footer-bg-layer {
         z-index: 1;

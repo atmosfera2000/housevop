@@ -15,6 +15,9 @@
         .overflow-hidden {
           overflow: hidden;
         }
+        .overflow-x {
+          overflow-x: hidden;
+        }
     </style>
     <script>
       //it makes scroll to be stable
@@ -23,7 +26,7 @@
     <title>Document</title>
 </head>
 <body class="overflow-hidden no-transition" tabindex="0">
-    <div id="content" class="opacity-0">
+    <div id="content" class="opacity-0 overflow-x">
         <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
             <div class="container">
               <a class="navbar-brand" href="#">
@@ -83,7 +86,12 @@
           </div>
         </header>
         <div id="cards" class="cards">
-          <div class="container">
+          <div class="container position-relative">
+            <div class="bg-number-layer bg-number_right">
+              <div class="bg-number-text">
+                <span>II</span>
+              </div>
+            </div>
             <div class="card">
               <div class="card-img">
                 <span class="icon-bench card-icon"></span>
@@ -107,11 +115,16 @@
                 <span class="icon-bicycle card-icon"></span>
               </div>
               <p class="card-text">6 км <br> велодорожек</p>
-            </div>  
+            </div>          
           </div>        
         </div>
         <section id="photos" class="photo-section">
-          <div class="container">
+          <div class="container position-relative">
+            <div class="bg-number-layer">
+              <div class="bg-number-text">
+                <span>III</span>
+              </div>
+            </div>
             <h2>Наши квартиры</h2>
             <div class="row photos">
               <div class="col-12 col-md-6">
@@ -178,10 +191,10 @@
                   <div class="col-10 col-md-6">
                     <input type="text" class="form-control" placeholder="Ваш телефон">
                   </div>
-                  <div class="col-10 col-md-6 order-lg-last">                    
+                  <div class="col-10 col-md-6 order-lg-last mt-2">                    
                     <button type="submit" class="btn">Посмотрть район</button>
                   </div>
-                  <div class="col-10 col-md-6 d-flex align-items-center">
+                  <div class="col-10 col-md-6 d-flex justify-content-center mt-3 mt-lg-2">
                     <p class="form-text text-center">
                       *Мы никому не передаем ваши данные. И не сохраняем ваш номер в базу.
                     </p>
@@ -192,7 +205,12 @@
           </div>
         </section>      
         <div id="video-section" class="video-section">
-          <div class="container">
+          <div class="container position-relative">
+            <div class="bg-number-layer bg-number_right">
+              <div class="bg-number-text">
+                <span>IV</span>
+              </div>
+            </div>
             <div class="row justify-content-center">
               <div class="col-10 col-md-8">
                 <div class="video">
@@ -221,18 +239,18 @@
         <section class="form-bottom-section">
           <div class="container">
             <h2>Есть вопросы?</h2>
-            <form class="row">
-              <div class="col-12 col-md-4 col-lg-3">
-                <input type="text">
+            <form class="row justify-content-center">
+              <div class="col-10 col-md-4 col-lg-3">
+                <input type="text" class="form-control" placeholder="Ваше имя">
               </div>
-              <div class="col-12 col-md-4 col-lg-3">
-                <input type="text">
+              <div class="col-10 col-md-4 col-lg-3">
+                <input type="text" class="form-control" placeholder="Ваш телефон">
               </div>
-              <div class="col-12 col-md-4 col-lg-3">
-                <button type="submit">Submit</button>
+              <div class="col-10 col-md-4 col-lg-3 mt-3 mt-md-0">
+                <button type="submit" class="btn">Посмотреть район</button>
               </div>
-              <div class="col-12 col-md-12 col-lg-3 order-lg-first">
-                <p>*Мы никому не передаем ваши данные. И не сохраняем ваш номер в базу.</p>
+              <div class="col-10 col-md-12 col-lg-3 order-lg-first d-flex align-items-center justify-content-center mt-3 mt-md-0">
+                <p class="form-text text-center">*Мы никому не передаем ваши данные. И не сохраняем ваш номер в базу.</p>
               </div>
             </form>
           </div>
@@ -242,13 +260,13 @@
           <div class="footer-top-layer">
             <div class="container">
               <div class="row">
-                <div class="col-12 col-lg-3">
+                <div class="col-12 col-lg-3 text-center text-lg-start mt-lg-2 footer-logo">
                   <a href="#">
                     <img src="img/logo.svg" style="width:8.375rem" alt="logo">
                   </a>
                 </div>
-                <div class="col-12 col-lg-3">
-                  <ul class="nav text-md-start">
+                <div class="col-12 col-md-4 col-lg-3">
+                  <ul class="nav nav_footer text-md-start">
                     <li class="nav-item">
                       <a href="#" class="nav-link">О комплексе</a>
                     </li>
@@ -266,8 +284,8 @@
                     </li>
                   </ul>
                 </div>
-                <div class="col-12 col-lg-3">
-                  <ul class="nav text-md-start">
+                <div class="col-12 col-md-4 col-lg-3">
+                  <ul class="nav nav_footer text-md-start">
                     <li class="nav-item">
                       <a href="#" class="nav-link">О комплексе</a>
                     </li>
@@ -285,8 +303,8 @@
                     </li>
                   </ul>      
                 </div>
-                <div class="col-12 col-lg-3">
-                  <ul class="nav text-md-start">
+                <div class="col-12 col-md-4 col-lg-3">
+                  <ul class="nav nav_footer text-md-start">
                     <li class="nav-item">
                       <a href="#" class="nav-link">Адрес: Наб. реки Фонтанки 10-15</a>
                     </li>

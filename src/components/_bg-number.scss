@@ -1,0 +1,63 @@
+.bg-number-layer {
+    z-index: 1;
+    position: absolute;    
+    left: 0;  
+}
+
+.bg-number_right {
+    right: 0;
+    left: unset;
+}
+
+.bg-number-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 170px;
+    line-height: 0;
+    color: $white;   
+    opacity: 0.02;            
+}
+
+.cards {
+    .bg-number-layer {
+        top: 20px;
+    }
+}
+
+.photo-section {
+    .bg-number-layer {
+        top: 75px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .bg-number-text {
+        font-size: 400px;          
+    }
+    .cards {
+        .bg-number-layer {
+            top: 90px;
+        }
+    }
+    .photo-section {
+        .bg-number-layer {
+            top: 100px;
+            left: -200px;
+        }
+    }
+    .video-section {
+        .bg-number-layer {
+            top: 200px;
+            right: -150px
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .photo-section {
+        .bg-number-layer {
+            top: 200px;
+            left: -200px;
+        }
+    }
+}

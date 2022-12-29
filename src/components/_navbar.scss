@@ -68,6 +68,7 @@
       font-weight: normal;
       font-size: 1.25rem;
       letter-spacing: 0.05em;
+      transition: $nav-link-transition;
 
       &:hover {
         color: $accent;

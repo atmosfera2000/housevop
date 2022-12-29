@@ -21,6 +21,7 @@
     .nav-link {
         color: $white;
         text-decoration: none;
+        transition: $nav-link-transition;
     
         &:hover {
             color: $accent;        
@@ -34,6 +35,12 @@
     .link_social {
         margin-right: 1.25rem;
     }
+}
+
+.nav_footer {
+    font-size: .875rem;
+    line-height: 1.14;
+    letter-spacing: 0.05em;
 }
 
 
