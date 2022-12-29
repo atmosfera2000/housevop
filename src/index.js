@@ -1,5 +1,6 @@
 import './style.scss'
 import { Collapse, ScrollSpy } from 'bootstrap';
+import makeScrollEffect from './scrollEffect';
 
 let navbarCollapseState = {
     show: false
@@ -9,6 +10,7 @@ window.addEventListener('load', () => setTimeout(init, 100));
 
 function init () {  
     navbarShrink() 
+    makeScrollEffect()
     document.body.classList.remove('overflow-hidden') 
     document.body.classList.remove('no-transition')
     document.getElementById('content').classList.remove('opacity-0') 
