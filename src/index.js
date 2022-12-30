@@ -2,18 +2,11 @@ import './style.scss'
 import { Collapse, ScrollSpy } from 'bootstrap';
 import makeScrollEffect from './scrollEffect';
 
-let navbarCollapseState = {
-    show: false
-}
+navbarShrink()
 
-let scrollPos = {
-    pos: 0
-}
+window.addEventListener('load', () => setTimeout(onLoad, 100));
 
-window.addEventListener('load', () => setTimeout(init, 100));
-
-function init () {  
-    navbarShrink() 
+function onLoad () {   
     makeScrollEffect()
     document.body.classList.remove('overflow-hidden') 
     document.body.classList.remove('no-transition')
@@ -39,26 +32,27 @@ function init () {
         document.querySelector('.navbar-toggler').classList.toggle('navbar-toggler_active')    
         document.getElementById('navbar').classList.add('navbar_shadow')
         document.getElementById('navbar').classList.add('navbar_dark')
-
-        navbarCollapseState.show = true;
     })
 
     document.getElementById('navbarCollapse').addEventListener('hide.bs.collapse', event => {
         document.querySelector('.navbar-toggler').classList.toggle('navbar-toggler_active')    
-        document.getElementById('navbar').classList.remove('navbar_shadow') 
-        
-        navbarCollapseState.show = false;
+        if (window.pageYOffset === 0) {
+            document.getElementById('navbar').classList.remove('navbar_shadow') 
+            
+        }        
     })
 
     document.getElementById('navbarCollapse').addEventListener('hidden.bs.collapse', event => {
-        document.getElementById('navbar').classList.remove('navbar_dark')
+        if (window.pageYOffset === 0) {
+            document.getElementById('navbar').classList.remove('navbar_dark')
+        }        
     })    
 
     document.addEventListener('scroll', navbarShrink);          
 }
 
-function navbarShrink() {
-    if (document.body.scrollTop !== 0 || document.documentElement.scrollTop !== 0) {
+function navbarShrink() {    
+    if (window.pageYOffset !== 0) {
         document.getElementById('navbar').classList.add('navbar_shadow')
         document.getElementById('navbar').classList.add('navbar_dark')
         document.getElementById('navbar').classList.add('navbar_shrink')        
@@ -66,12 +60,7 @@ function navbarShrink() {
         document.getElementById('navbar').classList.remove('navbar_shadow')
         document.getElementById('navbar').classList.remove('navbar_dark')
         document.getElementById('navbar').classList.remove('navbar_shrink')
-    }   
-
-    if ((document.body.scrollTop === 0 || document.documentElement.scrollTop === 0) && navbarCollapseState.show) {
-        document.getElementById('navbar').classList.add('navbar_shadow')
-        document.getElementById('navbar').classList.add('navbar_dark')
-    } 
+    }
 }
 
 
