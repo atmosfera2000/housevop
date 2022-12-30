@@ -16,7 +16,7 @@ function onLoad () {
     const scrollSpy = new ScrollSpy(document.body, {
         target: '#navbar',
         rootMargin: '0px 0px -60%',
-        smoothScroll: true 
+        smoothScroll: true               
     })
 
     const bsCollapse = new Collapse(document.getElementById('navbarCollapse'), {
