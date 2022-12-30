@@ -6,6 +6,10 @@ let navbarCollapseState = {
     show: false
 }
 
+let scrollPos = {
+    pos: 0
+}
+
 window.addEventListener('load', () => setTimeout(init, 100));
 
 function init () {  
@@ -18,7 +22,7 @@ function init () {
     
     const scrollSpy = new ScrollSpy(document.body, {
         target: '#navbar',
-        rootMargin: '0px 0px -25%',
+        rootMargin: '0px 0px -60%',
         smoothScroll: true 
     })
 
