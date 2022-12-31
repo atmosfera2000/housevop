@@ -23,7 +23,7 @@ jobs:
     - name: Build
       run: |
         npm install
-        webpack --mode production
+        webpack --mode production --env production
         
     - name: Archive artifact
       shell: sh
