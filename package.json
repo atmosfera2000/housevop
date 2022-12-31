@@ -6,7 +6,7 @@
   "scripts": {
     "opt": "node optimize.mjs",
     "dev": "webpack --mode development",
-    "build": "webpack --mode production",
+    "build": "webpack --mode production --env production",
     "watch": "webpack --mode development --watch",
     "start": "webpack serve --mode development --open"
   },

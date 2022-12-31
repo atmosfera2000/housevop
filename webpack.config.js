@@ -1,80 +1,82 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-module.exports = {    
-    entry: './src/index.js',
-    output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        clean: true,
-    },
-    optimization: {
-        splitChunks: {
-            chunks: 'all',
+module.exports = (env) => {
+    const devMode = !env.production;
+    
+    const cssLoaderRules = [
+        devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+        {
+            loader: 'css-loader',
+            options: {
+                url: {
+                    filter: url => url.includes("img") ? false : true,
+                }
+            }
         },
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: 'public/index.html'
-        }),
-        new CopyPlugin({
-            patterns: [
-                { 
-                    from: path.resolve(__dirname, "public/assets"), 
-                    to: path.resolve(__dirname, "dist") 
+        {
+            loader: 'postcss-loader',
+            options: {
+                postcssOptions: {
+                  plugins: () => [
+                    require('autoprefixer')
+                  ]
+                }
+            }
+        }        
+    ];
+
+    return {    
+        entry: './src/index.js',
+        output: {
+            filename: '[name].bundle.js',
+            path: path.resolve(__dirname, 'dist'),
+            clean: true,
+        },
+        optimization: {
+            splitChunks: {
+                chunks: 'all',
+            },
+        },
+        plugins: [
+            new HtmlWebpackPlugin({
+                template: 'public/index.html'
+            }),
+            new CopyPlugin({
+                patterns: [
+                    { 
+                        from: path.resolve(__dirname, "public/assets"), 
+                        to: path.resolve(__dirname, "dist") 
+                    },
+                ],
+            }),        
+        ].concat(devMode ? [] : [new MiniCssExtractPlugin()]),
+        devServer: {
+            static: path.resolve(__dirname, 'dist'),
+            port: 8080,
+            hot: true         
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.css$/i,
+                    use: [...cssLoaderRules]
+                },
+                {
+                    test: /\.s[ac]ss$/i,
+                    use: [...cssLoaderRules, 'sass-loader']              
+                },
+                {
+                    test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                    type: 'asset/resource',
+                },
+                {
+                    test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                    type: 'asset/resource',
                 },
             ],
-        }),        
-    ],
-    devServer: {
-        static: path.resolve(__dirname, 'dist'),
-        port: 8080,
-        hot: true         
-    },
-    module: {
-        rules: [
-            {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
-            },
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    {
-                        loader: 'style-loader'                        
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            url: {
-                                filter: url => url.includes("img") ? false : true,
-                            }
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            postcssOptions: {
-                              plugins: () => [
-                                require('autoprefixer')
-                              ]
-                            }
-                        }
-                    },
-                    {
-                        loader: 'sass-loader'
-                    }
-                ]                
-            },
-            {
-                test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'asset/resource',
-            },
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)$/i,
-                type: 'asset/resource',
-            },
-        ],
-    },
+        },
+    }
 }
