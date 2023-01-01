@@ -19,6 +19,9 @@ export default function makeScrollEffect() {
                         callback(entry.target, index)
                     } else {
                         entry.target.classList.add(animateClass)
+                        if (entry.target.classList.contains('map')) {
+                            entry.target.querySelector('#yandexMap').src = 'https://yandex.ru/map-widget/v1/?um=constructor%3A82d7a4f3f9ef8fb43c45373fb4e83e7b446bb1b38079564af9ec76ed97338126&amp;source=constructor'
+                        }
                     }          
                                     
                     observer.unobserve(entry.target)

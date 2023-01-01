@@ -11,7 +11,6 @@ function onLoad () {
     document.body.classList.remove('overflow-hidden') 
     document.body.classList.remove('no-transition')
     document.getElementById('content').classList.remove('opacity-0') 
-    document.getElementById('yandexMap').src = 'https://yandex.ru/map-widget/v1/?um=constructor%3A82d7a4f3f9ef8fb43c45373fb4e83e7b446bb1b38079564af9ec76ed97338126&amp;source=constructor'     
     
     const scrollSpy = new ScrollSpy(document.body, {
         target: '#navbar',
