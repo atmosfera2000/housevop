@@ -5,9 +5,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env) => {
     const devMode = !env.production;
+
+    //by default if the mode is production webpack makes a separate css file 
+    //const cssFromJS = devMode;
+    const cssFromJS = true; 
     
     const cssLoaderRules = [
-        devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+        cssFromJS ? "style-loader" : MiniCssExtractPlugin.loader,
         {
             loader: 'css-loader',
             options: {
@@ -52,7 +56,7 @@ module.exports = (env) => {
                     },
                 ],
             }),        
-        ].concat(devMode ? [] : [new MiniCssExtractPlugin()]),
+        ].concat(cssFromJS ? [] : [new MiniCssExtractPlugin()]),
         devServer: {
             static: path.resolve(__dirname, 'dist'),
             port: 8080,
