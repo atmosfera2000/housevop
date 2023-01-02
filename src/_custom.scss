@@ -183,7 +183,21 @@ h2 {
     padding: 30px 0 40px;
 
     .map {
-        padding-top: 52px;
+        position: relative;
+        margin-top: 52px;
+        height: 358px;
+
+        .map-loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;    
+            background-color: #626262;       
+        }
     }
 }
 
@@ -308,7 +322,7 @@ h2 {
         padding: 100px 0 100px;
     
         .map {
-            padding-top: 100px;
+            margin-top: 100px;
         }
     }
 

@@ -74,8 +74,7 @@
           }
         }
     </style>
-    <script>
-      //it makes scroll to be little stable
+    <script>      
       let pos = window.scrollY;      
     </script>
     <script>
@@ -314,8 +313,12 @@
         <h2 class="animate__animated">Район на карте</h2>
         <div class="row justify-content-center">
           <div class="col-10 col-lg-12">
-            <div class="map animate__animated">                  
-              <iframe id="yandexMap" src="" style="width: 100%; border: none;" height="358"></iframe>
+            <div class="map animate__animated">
+              <div class="map-loader">
+                <div class="spinner-border text-dark" style="width: 6rem; height: 6rem;" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>                
+              </div>
             </div>
           </div>
         </div>

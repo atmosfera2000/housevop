@@ -1,5 +1,9 @@
 .animate_downUp {
-    animation: downUp 0.9s cubic-bezier(0.1,0.25,0.1,1) 0s infinite alternate both;
+  animation: downUp 0.9s cubic-bezier(0.1,0.25,0.1,1) 0s infinite alternate both;
+}
+
+.animate_bgcolor {
+  animation: changeColor 2s linear 0s infinite;
 }
 
 .animate__animated {
@@ -77,4 +81,16 @@
     to {
         transform: translateY(.3125rem);
     }
+}
+
+@keyframes changeColor {
+  0% {
+      background-color: #fff;  
+  }
+  50% {
+      background-color: #626262;
+  }
+  100% {
+    background-color: #fff;  
+  }
 }
